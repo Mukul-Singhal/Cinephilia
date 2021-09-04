@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "../config";
 
 //components
+import Spinner from "./Spinner";
 import HeroImage from "./HeroImage";
 import Grid from "./Grid";
 import Thumbnail from "./Thumbnail";
@@ -25,14 +26,18 @@ const Home = () => {
           text={data.results[0].overview}
         />
       )}
-      <Grid header="Popular Movies">
-        {data["results"].map((movie) => (
-          <Thumbnail
-            key={movie.id}
-            image={IMAGE_BASE_URL + BACKDROP_SIZE + movie.poster_path}
-          />
-        ))}
-      </Grid>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <Grid header="Popular Movies">
+          {data["results"].map((movie) => (
+            <Thumbnail
+              key={movie.id}
+              image={IMAGE_BASE_URL + BACKDROP_SIZE + movie.poster_path}
+            />
+          ))}
+        </Grid>
+      )}
     </>
   );
 };

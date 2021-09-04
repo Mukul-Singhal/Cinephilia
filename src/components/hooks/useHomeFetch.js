@@ -25,6 +25,7 @@ export const useHomeFetch = () => {
         results:
           page > 1 ? [...prev.results, ...movies.results] : [...movies.results],
       }));
+      setLoading(false);
     } catch (error) {
       setError(true);
       console.error(error);
