@@ -3,6 +3,17 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   background: var(--darkGrey);
   padding: 0 20px;
+
+  .link {
+    color: var(--white);
+    font-weight: 600;
+    text-decoration: none;
+    &:hover {
+      color: var(--white);
+      font-weight: 1000;
+      /* scale: 1.1; */
+    }
+  }
 `;
 
 export const Content = styled.div`
