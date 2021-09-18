@@ -19,3 +19,12 @@ export const Image = styled.img`
     }
   }
 `;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Title = styled.p`
+  color: black;
+`;

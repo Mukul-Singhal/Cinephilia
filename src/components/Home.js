@@ -1,42 +1,54 @@
-import React, { useState, useEffect } from "react";
-
+import React from "react";
+// Config
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "../config";
-
-//components
-import Spinner from "./Spinner";
+// Components
 import HeroImage from "./HeroImage";
 import Grid from "./Grid";
 import Thumbnail from "./Thumbnail";
+import Spinner from "./Spinner";
+import SearchBar from "./Searchbar";
+import Button from "./Button";
 
-//Hook
-import { useHomeFetch } from "./hooks/useHomeFetch";
-//Image
-
-import FallbackImage from "../Images/no_image.jpg";
+// Hook
+import { useHomeFetch } from "../hooks/useHomeFetch";
+// Image
+// import NoImage from '../images/no_image.jpg';
 
 const Home = () => {
-  const { data, loading, error } = useHomeFetch();
+  const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
+    useHomeFetch();
+
+  // console.log(state);
+
+  if (error) return <div>Something went wrong ...</div>;
 
   return (
     <>
-      {data.results[0] && (
+      {!searchTerm && state.results[0] ? (
         <HeroImage
-          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${data.results[0].backdrop_path}`}
-          title={data.results[0].original_title}
-          text={data.results[0].overview}
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`}
+          title={state.results[0].original_title}
+          text={state.results[0].overview}
         />
-      )}
-      {loading ? (
-        <Spinner />
-      ) : (
-        <Grid header="Popular Movies">
-          {data["results"].map((movie) => (
-            <Thumbnail
-              key={movie.id}
-              image={IMAGE_BASE_URL + BACKDROP_SIZE + movie.poster_path}
-            />
-          ))}
-        </Grid>
+      ) : null}
+      <SearchBar setSearchTerm={setSearchTerm} />
+      <Grid header={searchTerm ? "Search Result" : "Popular Movies"}>
+        {state.results.map((movie) => (
+          <Thumbnail
+            key={movie.id}
+            clickable
+            image={
+              movie.poster_path
+                ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+                : null
+            }
+            movieId={movie.id}
+          />
+        ))}
+      </Grid>
+      {loading && <Spinner />}
+      {state.page < state.total_pages && !loading && (
+        <Button text="Load More" callback={() => setIsLoadingMore(true)} />
       )}
     </>
   );
