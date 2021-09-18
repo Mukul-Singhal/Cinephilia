@@ -12,7 +12,7 @@ import Button from "./Button";
 // Hook
 import { useHomeFetch } from "../hooks/useHomeFetch";
 // Image
-// import NoImage from '../images/no_image.jpg';
+import NoImage from "../Images/no_image.jpg";
 
 const Home = () => {
   const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
@@ -37,10 +37,11 @@ const Home = () => {
           <Thumbnail
             key={movie.id}
             clickable
+            title={movie.original_title}
             image={
               movie.poster_path
                 ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
-                : null
+                : NoImage
             }
             movieId={movie.id}
           />

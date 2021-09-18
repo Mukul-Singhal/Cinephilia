@@ -12,7 +12,7 @@ import Actor from "./Actor";
 // Hook
 import { useMovieFetch } from "../hooks/useMovieFetch";
 // Image
-// import NoImage from '../images/no_image.jpg';
+import NoImage from "../Images/no_image.jpg";
 
 const Movie = () => {
   const { movieId } = useParams();
@@ -40,7 +40,7 @@ const Movie = () => {
             imageUrl={
               actor.profile_path
                 ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
-                : null
+                : NoImage
             }
           />
         ))}

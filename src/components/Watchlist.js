@@ -12,12 +12,13 @@ function Watchlist() {
   return (
     <div>
       {watchlist.length ? (
-        <Grid header="WatchList">
+        <Grid header="My WatchList">
           {watchlist.map((movie) => (
             <div>
               <Thumbnail
                 key={movie.id}
                 clickable
+                title={movie.original_title}
                 image={
                   movie.poster_path
                     ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path

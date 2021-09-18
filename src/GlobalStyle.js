@@ -64,5 +64,11 @@ export const GlobalStyle = createGlobalStyle`
     align-items: center;
     margin-top: 100px;
   }
+  .title{
+    font-size: var(--fontsmall);
+    font-weight: 550;
+    color: var(--black);
+    padding:2px
+  }
 
 `;
