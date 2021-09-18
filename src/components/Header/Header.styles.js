@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   max-width: var(--max-width);
   padding: 15px 0;
   margin: 0 auto;

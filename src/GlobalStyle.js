@@ -50,8 +50,19 @@ export const GlobalStyle = createGlobalStyle`
   outline: none;
   cursor: pointer;
 
+  
   :hover {
     opacity: 0.4px;
   }
   }
+  .nomovies{
+    font-weight: bold;
+    font-size: var(--fontBig);
+    color: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+  }
+
 `;
